@@ -21,7 +21,9 @@ public class ImageItem implements RecyclerItem<ImageItem.Holder> {
 
     @Override
     public void onBindViewHolder(Holder holder, int position) {
-        Picasso.get().load(picture.getLarge()).into(holder.imageView);
+        if (picture.getLarge() != null && !picture.getLarge().isEmpty()) {
+            Picasso.get().load(picture.getLarge()).into(holder.imageView);
+        }
     }
 
     @Override
