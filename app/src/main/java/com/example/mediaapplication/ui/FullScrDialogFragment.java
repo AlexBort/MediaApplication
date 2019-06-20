@@ -27,7 +27,7 @@ public class FullScrDialogFragment extends DialogFragment {
     //    private TextView lblCount, lblTitle, lblDate;
     private int selectedPosition = 0;
 
-    static FullScrDialogFragment newInstance() {
+    public static FullScrDialogFragment newInstance() {
         FullScrDialogFragment f = new FullScrDialogFragment();
         return f;
     }

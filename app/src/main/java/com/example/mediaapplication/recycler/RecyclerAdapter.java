@@ -40,4 +40,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     public int getItemCount() {
         return mItems.size();
     }
+
+    public List<RecyclerItem> getItems() {
+        return mItems;
+    }
 }

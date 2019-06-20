@@ -1,8 +1,12 @@
 package com.example.mediaapplication;
 
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
+import android.view.View;
 
 import com.example.mediaapplication.api.ApiManager;
 import com.example.mediaapplication.api.ResponseListener;
@@ -12,6 +16,7 @@ import com.example.mediaapplication.model.User;
 import com.example.mediaapplication.recycler.RecyclerImpl;
 import com.example.mediaapplication.recycler.RecyclerItem;
 import com.example.mediaapplication.recycler_items.ImageItem;
+import com.example.mediaapplication.ui.FullScrDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +50,40 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void failureResponse() {
+
+            }
+        });
+
+        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+            @Override
+            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+                View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+                int position = recyclerView.getChildAdapterPosition(childView);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("images", recyclerImpl.getRecyclerAdapter().getItems());
+                bundle.putInt("position", position);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                FullScrDialogFragment newFragment = FullScrDialogFragment.newInstance();
+                newFragment.setArguments(bundle);
+                newFragment.show(ft, "slideshow");
+
+
+                return false;
+            }
+
+            @Override
+            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
+                // there is a logic
+
+//
+
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean b) {
 
             }
         });
