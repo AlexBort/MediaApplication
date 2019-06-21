@@ -8,6 +8,7 @@ import com.example.mediaapplication.R;
 import com.example.mediaapplication.base.BaseFragment;
 import com.example.mediaapplication.ui.FullScrDialogFragment;
 import com.example.mediaapplication.ui.GalleryFragment;
+import com.example.mediaapplication.ui.ListFragment;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,6 @@ public class NavigationManager implements INavigation {
     @Override
     public void openListFragment() {
         Bundle bundle = new Bundle();
-        mFragmentStack.addFragment(BaseFragment.class, bundle);
+        mFragmentStack.addFragment(ListFragment.class, bundle);
     }
 }

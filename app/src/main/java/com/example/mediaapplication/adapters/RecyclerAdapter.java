@@ -1,8 +1,12 @@
-package com.example.mediaapplication.recycler;
+package com.example.mediaapplication.adapters;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
+
+import com.example.mediaapplication.recycler.RecyclerItem;
+import com.example.mediaapplication.recycler.RecyclerItemType;
+import com.example.mediaapplication.recycler.TypedViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;

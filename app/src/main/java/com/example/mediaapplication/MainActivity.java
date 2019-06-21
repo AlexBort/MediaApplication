@@ -32,49 +32,5 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         navigationManager = new NavigationManager(this);
         navigationManager.openListFragment();
-
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-
-
-//        recyclerImpl = new RecyclerImpl(recyclerView);
-//
-//        ApiManager apiManager = new ApiManager();
-//        apiManager.getResults(new ResponseListener() {
-//            @Override
-//            public void successResponse(ServerResponse response) {
-//                List<User> users = response.getResults();
-//                for (int i = 0; i < users.size(); i++) {
-//                    Picture picture = users.get(i).getPicture();
-//                    urlList.add(picture.getLarge());
-//                    list.add(new ImageItem(picture));
-//                }
-//                recyclerImpl.updateItems(list);
-//            }
-//
-//            @Override
-//            public void failureResponse() {
-//
-//            }
-//        });
-
-//        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-////                View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-////                int position = recyclerView.getChildAdapterPosition(childView);
-//
-//                Bundle bundle = new Bundle();
-////                bundle.putSerializable("images", (Serializable) recyclerImpl.getRecyclerAdapter().getItem(position));
-//                bundle.putStringArrayList("list", urlList);
-//                bundle.putInt("position", position);
-//
-//                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-//                FullScrDialogFragment newFragment = FullScrDialogFragment.newInstance();
-//                newFragment.setArguments(bundle);
-//                newFragment.show(ft, "slideshow");
-//            }
-//        }));
-
-
     }
 }

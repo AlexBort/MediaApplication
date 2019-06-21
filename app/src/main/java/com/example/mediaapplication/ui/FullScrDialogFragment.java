@@ -5,14 +5,12 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.mediaapplication.R;
-import com.example.mediaapplication.model.Picture;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -38,7 +36,7 @@ public class FullScrDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.view_pager, container, false);
+        View view = inflater.inflate(R.layout.fragment_gallery, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
         listUrls = getArguments().getStringArrayList("list");
@@ -91,6 +89,22 @@ public class FullScrDialogFragment extends DialogFragment {
         setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //  adapter
     public class MyViewPagerAdapter extends PagerAdapter {
 
@@ -103,7 +117,7 @@ public class FullScrDialogFragment extends DialogFragment {
         public Object instantiateItem(ViewGroup container, int position) {
 
             layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(R.layout.image_item_full_scr, container, false);
+            View view = layoutInflater.inflate(R.layout.item_gallery, container, false);
 
             ImageView imageViewPreview = (ImageView) view.findViewById(R.id.im_full_scr);
 

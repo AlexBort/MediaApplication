@@ -10,6 +10,6 @@ public interface INavigation {
 
     void openListFragment();
 
-    public void openGalleryFragment(int position, ArrayList<String> listUrls);
+    void openGalleryFragment(int position, ArrayList<String> listUrls);
 
 }

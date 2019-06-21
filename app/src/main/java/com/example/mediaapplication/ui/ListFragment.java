@@ -25,7 +25,7 @@ import java.util.List;
 public class ListFragment extends BaseFragment<ListPresenter> implements IListView {
 
     private RecyclerImpl recyclerImpl;
-    List<RecyclerItem> recyclerItems = new ArrayList<>();
+    //    List<RecyclerItem> recyclerItems = new ArrayList<>();
     ArrayList<String> urlList = new ArrayList<>();
     private IListView iListView;
 
@@ -35,14 +35,12 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     }
 
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = super.onCreateView(inflater, container, savedInstanceState);
-        iListView = this;
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerImpl = new RecyclerImpl(recyclerView);
-
+        iListView = this;
 
         recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
@@ -50,10 +48,8 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
                 presenter.onListItemPressed(iListView);
             }
         }));
-
-
-        return view;
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -62,9 +58,10 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
 
     @Override
     public void showContentList(List<Picture> dataList) {
+        List<RecyclerItem> list = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
-            recyclerItems.add(new ImageItem(dataList.get(i)));
+            list.add(new ImageItem(dataList.get(i)));
         }
-        recyclerImpl.updateItems(recyclerItems);
+        recyclerImpl.updateItems(list);
     }
 }

@@ -1,4 +1,9 @@
 package com.example.mediaapplication.view;
 
-public interface IGalleryView {
+import com.example.mediaapplication.base.IBaseView;
+
+import java.util.ArrayList;
+
+public interface IGalleryView extends IBaseView {
+    void showGallery(ArrayList<String> listUrls, int selectedPosition);
 }
