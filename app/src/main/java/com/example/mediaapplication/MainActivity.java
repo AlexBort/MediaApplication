@@ -15,10 +15,10 @@ import com.example.mediaapplication.model.ServerResponse;
 import com.example.mediaapplication.model.User;
 import com.example.mediaapplication.recycler.RecyclerImpl;
 import com.example.mediaapplication.recycler.RecyclerItem;
+import com.example.mediaapplication.recycler.RecyclerItemClickListener;
 import com.example.mediaapplication.recycler_items.ImageItem;
 import com.example.mediaapplication.ui.FullScrDialogFragment;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
 //        recyclerImpl.getRecyclerAdapter().getItems();
 //    }
 
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,11 +62,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
+        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(MainActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
             @Override
-            public boolean onInterceptTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
-                int position = recyclerView.getChildAdapterPosition(childView);
+            public void onItemClick(View view, int position) {
+//                View childView = recyclerView.findChildViewUnder(motionEvent.getX(), motionEvent.getY());
+//                int position = recyclerView.getChildAdapterPosition(childView);
 
                 Bundle bundle = new Bundle();
 //                bundle.putSerializable("images", (Serializable) recyclerImpl.getRecyclerAdapter().getItem(position));
@@ -76,25 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 FullScrDialogFragment newFragment = FullScrDialogFragment.newInstance();
                 newFragment.setArguments(bundle);
                 newFragment.show(ft, "slideshow");
-
-
-                return false;
             }
-
-            @Override
-            public void onTouchEvent(@NonNull RecyclerView recyclerView, @NonNull MotionEvent motionEvent) {
-                // there is a logic
-
-//
-
-
-            }
-
-            @Override
-            public void onRequestDisallowInterceptTouchEvent(boolean b) {
-
-            }
-        });
+        }));
 
 
     }

@@ -19,16 +19,20 @@ import java.util.ArrayList;
 
 public class FullScrDialogFragment extends DialogFragment {
 
+    static FullScrDialogFragment fragment;
     private ArrayList<String> listUrls;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private int selectedPosition = 0;
 
     public static FullScrDialogFragment newInstance() {
-        FullScrDialogFragment fragment = new FullScrDialogFragment();
+        fragment = new FullScrDialogFragment();
         return fragment;
     }
 
+    public static FullScrDialogFragment getFragment() {
+        return fragment;
+    }
 
 
     @Override
@@ -40,9 +44,10 @@ public class FullScrDialogFragment extends DialogFragment {
         listUrls = getArguments().getStringArrayList("list");
         selectedPosition = getArguments().getInt("position");
 
+
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
-        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
+        //       viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
         setCurrentItem(selectedPosition);
 
         return view;
@@ -104,13 +109,6 @@ public class FullScrDialogFragment extends DialogFragment {
 
             String imageUrl = listUrls.get(position);
             Picasso.get().load(imageUrl).into(imageViewPreview);
-
-//            Glide.with(getActivity()).load(image.getLarge())
-//                    .thumbnail(0.5f)
-//                    .crossFade()
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-//                    .into(imageViewPreview);
-
             container.addView(view);
 
             return view;
