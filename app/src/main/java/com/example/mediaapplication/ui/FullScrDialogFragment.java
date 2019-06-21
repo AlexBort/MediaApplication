@@ -19,17 +19,17 @@ import java.util.ArrayList;
 
 public class FullScrDialogFragment extends DialogFragment {
 
-    private ArrayList<Picture> images;
     private ArrayList<String> listUrls;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
-    //    private TextView lblCount, lblTitle, lblDate;
     private int selectedPosition = 0;
 
     public static FullScrDialogFragment newInstance() {
-        FullScrDialogFragment f = new FullScrDialogFragment();
-        return f;
+        FullScrDialogFragment fragment = new FullScrDialogFragment();
+        return fragment;
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,19 +37,13 @@ public class FullScrDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.view_pager, container, false);
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
-
-//        images = (ArrayList<Picture>) getArguments().getSerializable("images");
         listUrls = getArguments().getStringArrayList("list");
         selectedPosition = getArguments().getInt("position");
 
-//        Log.e(TAG, "position: " + selectedPosition);
-//        Log.e(TAG, "images size: " + images.size());
-
-//        myViewPagerAdapter = new MyViewPagerAdapter();
-//        viewPager.setAdapter(myViewPagerAdapter);
-//        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-//
-//        setCurrentItem(selectedPosition);
+        myViewPagerAdapter = new MyViewPagerAdapter();
+        viewPager.setAdapter(myViewPagerAdapter);
+        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
+        setCurrentItem(selectedPosition);
 
         return view;
     }
@@ -81,7 +75,7 @@ public class FullScrDialogFragment extends DialogFragment {
     private void displayMetaInfo(int position) {
 //        lblCount.setText((position + 1) + " of " + images.size());
 
-        Picture image = images.get(position);
+        String url = listUrls.get(position);
 //        lblTitle.setText(image.getName());
 //        lblDate.setText(image.getTimestamp());
     }
@@ -108,8 +102,8 @@ public class FullScrDialogFragment extends DialogFragment {
 
             ImageView imageViewPreview = (ImageView) view.findViewById(R.id.im_full_scr);
 
-            Picture image = images.get(position);
-            Picasso.get().load(image.getLarge()).into(imageViewPreview);
+            String imageUrl = listUrls.get(position);
+            Picasso.get().load(imageUrl).into(imageViewPreview);
 
 //            Glide.with(getActivity()).load(image.getLarge())
 //                    .thumbnail(0.5f)
@@ -124,7 +118,7 @@ public class FullScrDialogFragment extends DialogFragment {
 
         @Override
         public int getCount() {
-            return images.size();
+            return listUrls.size();
         }
 
         @Override
