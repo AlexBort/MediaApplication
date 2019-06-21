@@ -18,6 +18,7 @@ import com.example.mediaapplication.recycler.RecyclerItem;
 import com.example.mediaapplication.recycler_items.ImageItem;
 import com.example.mediaapplication.ui.FullScrDialogFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerImpl recyclerImpl;
     List<RecyclerItem> list = new ArrayList<>();
+    ArrayList<String> urlList = new ArrayList<>();
+
+//    private ArrayList<String> getUrlList() {
+//        recyclerImpl.getRecyclerAdapter().getItems();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
                 List<User> users = response.getResults();
                 for (int i = 0; i < users.size(); i++) {
                     Picture picture = users.get(i).getPicture();
+                    urlList.add(picture.getLarge());
                     list.add(new ImageItem(picture));
                 }
                 recyclerImpl.updateItems(list);
@@ -61,7 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 int position = recyclerView.getChildAdapterPosition(childView);
 
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("images", recyclerImpl.getRecyclerAdapter().getItems());
+//                bundle.putSerializable("images", (Serializable) recyclerImpl.getRecyclerAdapter().getItem(position));
+                bundle.putStringArrayList("list", urlList);
                 bundle.putInt("position", position);
 
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

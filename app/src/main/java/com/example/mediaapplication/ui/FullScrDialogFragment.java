@@ -19,9 +19,8 @@ import java.util.ArrayList;
 
 public class FullScrDialogFragment extends DialogFragment {
 
-
-    //    private String TAG = SlideshowDialogFragment.class.getSimpleName();
     private ArrayList<Picture> images;
+    private ArrayList<String> listUrls;
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     //    private TextView lblCount, lblTitle, lblDate;
@@ -39,17 +38,18 @@ public class FullScrDialogFragment extends DialogFragment {
         viewPager = (ViewPager) view.findViewById(R.id.view_pager);
 
 
-        images = (ArrayList<Picture>) getArguments().getSerializable("images");
+//        images = (ArrayList<Picture>) getArguments().getSerializable("images");
+        listUrls = getArguments().getStringArrayList("list");
         selectedPosition = getArguments().getInt("position");
 
 //        Log.e(TAG, "position: " + selectedPosition);
 //        Log.e(TAG, "images size: " + images.size());
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
-        viewPager.setAdapter(myViewPagerAdapter);
-        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
-        setCurrentItem(selectedPosition);
+//        myViewPagerAdapter = new MyViewPagerAdapter();
+//        viewPager.setAdapter(myViewPagerAdapter);
+//        viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
+//
+//        setCurrentItem(selectedPosition);
 
         return view;
     }
