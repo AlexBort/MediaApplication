@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.mediaapplication.MainActivity;
+import com.example.mediaapplication.navigation.INavigation;
+
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements IBaseView {
 
     protected T presenter;
@@ -16,6 +19,11 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
     protected abstract int getLayoutId();
 
+    @Override
+    public INavigation getNavigation() {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        return mainActivity.getNavigationManager();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

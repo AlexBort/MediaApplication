@@ -17,4 +17,9 @@ public class MainActivity extends AppCompatActivity {
         navigationManager = new NavigationManager(this);
         navigationManager.openListFragment();
     }
+
+
+    public INavigation getNavigationManager() {
+        return navigationManager;
+    }
 }

@@ -38,8 +38,6 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Log.i("tag", "onViewCreated");
-
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerImpl = new RecyclerImpl(recyclerView);
         iListView = this;
@@ -47,7 +45,9 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
         recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                presenter.onListItemPressed(iListView);
+                if (!urlList.isEmpty()) {
+                    presenter.onListItemPressed(iListView, position,urlList);
+                }
             }
         }));
     }
@@ -63,6 +63,8 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
         List<RecyclerItem> list = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             list.add(new ImageItem(dataList.get(i)));
+            Picture picture = dataList.get(i);
+            urlList.add(picture.getLarge());
         }
         recyclerImpl.updateItems(list);
     }
