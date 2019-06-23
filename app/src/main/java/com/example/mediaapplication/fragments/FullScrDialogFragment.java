@@ -1,4 +1,4 @@
-package com.example.mediaapplication.ui;
+package com.example.mediaapplication.fragments;
 
 import android.content.Context;
 import android.os.Bundle;

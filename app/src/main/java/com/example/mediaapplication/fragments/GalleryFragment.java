@@ -1,4 +1,4 @@
-package com.example.mediaapplication.ui;
+package com.example.mediaapplication.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -15,7 +15,6 @@ import com.example.mediaapplication.presenter.GalleryPresenter;
 import com.example.mediaapplication.view.IGalleryView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class GalleryFragment extends BaseFragment<GalleryPresenter> implements IGalleryView {
 

@@ -1,14 +1,11 @@
 package com.example.mediaapplication.navigation;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.mediaapplication.R;
-import com.example.mediaapplication.base.BaseFragment;
-import com.example.mediaapplication.ui.FullScrDialogFragment;
-import com.example.mediaapplication.ui.GalleryFragment;
-import com.example.mediaapplication.ui.ListFragment;
+import com.example.mediaapplication.fragments.GalleryFragment;
+import com.example.mediaapplication.fragments.ListFragment;
 
 import java.util.ArrayList;
 

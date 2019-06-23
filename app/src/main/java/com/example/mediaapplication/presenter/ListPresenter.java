@@ -27,10 +27,8 @@ public class ListPresenter extends BasePresenter<IListView> {
                 List<Picture> pictureList = new ArrayList<>();
                 for (int i = 0; i < users.size(); i++) {
                     Picture picture = users.get(i).getPicture();
-                    pictureList.add(picture);
-                }
+                    pictureList.add(picture); }
                 view.showContentList(pictureList);
-
             }
 
             @Override
