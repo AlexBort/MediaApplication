@@ -4,15 +4,14 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.example.mediaapplication.R;
+import com.example.mediaapplication.adapters.RecyclerAdapter;
 import com.example.mediaapplication.model.Picture;
 import com.example.mediaapplication.base.BaseFragment;
 import com.example.mediaapplication.recycler.RecyclerItemClickListener;
+import com.example.mediaapplication.recycler.SwipeCallback;
 import com.example.mediaapplication.view.IListView;
 import com.example.mediaapplication.presenter.ListPresenter;
 import com.example.mediaapplication.recycler.RecyclerImpl;
@@ -22,11 +21,12 @@ import com.example.mediaapplication.recycler_items.ImageItem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment extends BaseFragment<ListPresenter> implements IListView {
+public class ListFragment extends BaseFragment<ListPresenter> implements IListView, RecyclerAdapter.FavouriteListener {
 
     private RecyclerImpl recyclerImpl;
     //    List<RecyclerItem> recyclerItems = new ArrayList<>();
     ArrayList<String> urlList = new ArrayList<>();
+    ;
     private IListView iListView;
 
     @Override
@@ -40,16 +40,16 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
 
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerImpl = new RecyclerImpl(recyclerView);
+        recyclerImpl.attachSwipe(new SwipeCallback(recyclerImpl.getRecyclerAdapter()));
+        recyclerImpl.getRecyclerAdapter().setDeleteListener(this);
         iListView = this;
 
-        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                if (!urlList.isEmpty()) {
-                    presenter.onListItemPressed(iListView, position,urlList);
-                }
+        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (view1, position) -> {
+            if (!urlList.isEmpty()) {
+                presenter.onListItemPressed(iListView, position, urlList);
             }
         }));
+
     }
 
 
@@ -67,5 +67,15 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
             urlList.add(picture.getLarge());
         }
         recyclerImpl.updateItems(list);
+    }
+
+    @Override
+    public void deleteItem(int position) {
+
+    }
+
+    @Override
+    public void addToFavourites() {
+
     }
 }

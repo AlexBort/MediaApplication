@@ -3,6 +3,7 @@ package com.example.mediaapplication.recycler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.example.mediaapplication.adapters.RecyclerAdapter;
 
@@ -13,6 +14,7 @@ public class RecyclerImpl {
     private final RecyclerView recyclerView;
     private final RecyclerAdapter recyclerAdapter;
     private final LinearLayoutManager layoutManager;
+    private ItemTouchHelper itemTouchHelper;
 
     public RecyclerImpl(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
@@ -22,6 +24,17 @@ public class RecyclerImpl {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(recyclerAdapter);
     }
+
+    // after set to Adapter
+    public void attachSwipe(SwipeCallback swipeCallback) {
+        itemTouchHelper = new ItemTouchHelper(swipeCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
+    }
+
+    public ItemTouchHelper getItemTouchHelper() {
+        return itemTouchHelper;
+    }
+
 
     public RecyclerView getRecyclerView() {
         return recyclerView;

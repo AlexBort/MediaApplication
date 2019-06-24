@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MediaApplication</string>
+    <string name="add">ADD TO FAVOURITES</string>
 </resources>

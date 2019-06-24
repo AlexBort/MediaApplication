@@ -15,8 +15,30 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private List<RecyclerItem> mItems = new ArrayList<>();
 
+    private FavouriteListener listener;
+
     public void setItems(List<RecyclerItem> items) {
         this.mItems = items;
+    }
+
+    public void setDeleteListener(FavouriteListener listener) {
+        this.listener = listener;
+    }
+
+
+    public interface FavouriteListener {
+        //  void deleteItem(List<RecyclerItem> list);
+        void deleteItem(int position);
+
+        void addToFavourites();
+    }
+
+    public void deleteItem(int position) {
+        listener.deleteItem(position);
+    }
+
+    public void addToFavourites(int position) {
+        listener.addToFavourites();
     }
 
     public boolean isEmpty() {
