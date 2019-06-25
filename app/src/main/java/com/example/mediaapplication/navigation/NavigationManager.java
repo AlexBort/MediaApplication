@@ -23,10 +23,6 @@ public class NavigationManager implements INavigation {
         mFragmentStack.popFragment();
     }
 
-    @Override
-    public void popDialog() {
-
-    }
 
     public void openGalleryFragment(int position, ArrayList<String> listUrls) {
         Bundle bundle = new Bundle();

@@ -3,7 +3,6 @@ package com.example.mediaapplication.presenter;
 import com.example.mediaapplication.base.BasePresenter;
 import com.example.mediaapplication.model.Picture;
 import com.example.mediaapplication.view.IFavouritesView;
-import com.example.mediaapplication.view.IListView;
 
 import java.util.List;
 

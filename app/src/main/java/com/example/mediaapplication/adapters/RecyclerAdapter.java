@@ -1,11 +1,9 @@
 package com.example.mediaapplication.adapters;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import com.example.mediaapplication.R;
 import com.example.mediaapplication.model.Picture;
 import com.example.mediaapplication.recycler.RecyclerItem;
 import com.example.mediaapplication.recycler.RecyclerItemType;
@@ -15,7 +13,6 @@ import com.example.mediaapplication.recycler_items.ImageItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.graphics.PorterDuff.Mode.ADD;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -35,17 +32,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return tag;
     }
 
-    private Context context;
     private List<RecyclerItem> mItems = new ArrayList<>();
-
-
-    public Context getContext() {
-        return context;
-    }
-
-    public void setContext(Context context) {
-        this.context = context;
-    }
 
     private FavouriteListener listener;
 

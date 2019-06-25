@@ -14,7 +14,6 @@ import com.example.mediaapplication.MainActivity;
 import com.example.mediaapplication.R;
 import com.example.mediaapplication.navigation.INavigation;
 import com.example.mediaapplication.recycler.RecyclerImpl;
-import com.example.mediaapplication.recycler.SwipeCallback;
 
 public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements IBaseView {
 

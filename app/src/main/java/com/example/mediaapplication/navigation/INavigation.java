@@ -6,8 +6,6 @@ public interface INavigation {
 
     void popFragment();
 
-    void popDialog();
-
     void openListFragment();
 
     void openGalleryFragment(int position, ArrayList<String> listUrls);

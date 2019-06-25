@@ -8,6 +8,4 @@ public interface IBaseView {
 
     void showToastMessage(String message);
 
-//    void initRecycler();
-
 }
