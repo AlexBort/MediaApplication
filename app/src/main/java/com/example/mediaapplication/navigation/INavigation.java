@@ -12,4 +12,5 @@ public interface INavigation {
 
     void openGalleryFragment(int position, ArrayList<String> listUrls);
 
+    void openFavouriteFragment();
 }

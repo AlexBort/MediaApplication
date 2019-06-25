@@ -6,4 +6,6 @@ public interface IBaseView {
 
     INavigation getNavigation();
 
+//    void initRecycler();
+
 }

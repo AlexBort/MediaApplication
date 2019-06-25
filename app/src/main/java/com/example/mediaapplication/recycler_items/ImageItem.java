@@ -15,6 +15,10 @@ public class ImageItem implements RecyclerItem<ImageItem.Holder> {
 
     private Picture picture;
 
+    public Picture getPicture() {
+        return picture;
+    }
+
     public ImageItem(Picture picture) {
         this.picture = picture;
     }

@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
 import com.example.mediaapplication.R;
+import com.example.mediaapplication.model.Picture;
 import com.example.mediaapplication.recycler.RecyclerItem;
 import com.example.mediaapplication.recycler.RecyclerItemType;
 import com.example.mediaapplication.recycler.TypedViewHolder;
+import com.example.mediaapplication.recycler_items.ImageItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
-    Context context;
+    private Context context;
     private List<RecyclerItem> mItems = new ArrayList<>();
 
 
@@ -41,21 +43,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     public interface FavouriteListener {
         //  void deleteItem(List<RecyclerItem> list);
-        void deleteItem(int position);
+        void deleteItem(Picture picture);
 
-        void addToFavourites();
+        void addToFavourites(Picture picture);
     }
 
-    public void deleteItem(RecyclerView.ViewHolder viewHolder, int position) {
-        listener.deleteItem(position);
-//        viewHolder.itemView.setBackgroundColor(getContext().getResources().getColor(R.color.colorAccent));
-//        notifyDataSetChanged();
+    public void deleteItem(int position) {
+        ImageItem item = (ImageItem) mItems.get(position);
+        listener.deleteItem(item.getPicture());
+
     }
 
-    public void addToFavourites(RecyclerView.ViewHolder viewHolder, int position) {
-//       viewHolder.itemView.setBackgroundColor(getContext().getResources().getColor(R.color.colorPrimary));
-        listener.addToFavourites();
-//        notifyDataSetChanged();
+    public void addToFavourites(int position) {
+        ImageItem item = (ImageItem) mItems.get(position);
+        listener.addToFavourites(item.getPicture());
     }
 
     public boolean isEmpty() {

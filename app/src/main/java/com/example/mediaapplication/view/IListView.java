@@ -8,4 +8,6 @@ import java.util.List;
 public interface IListView extends IBaseView {
 
     void showContentList(List<Picture> list);
+
+    void showToastMessage(String message);
 }

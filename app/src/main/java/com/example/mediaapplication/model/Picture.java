@@ -1,6 +1,8 @@
 package com.example.mediaapplication.model;
 
-public class Picture {
+import io.realm.RealmObject;
+
+public class Picture extends RealmObject {
 
 
     public Picture() {
@@ -9,6 +11,7 @@ public class Picture {
     private String large;
     private String medium;
     private String thumbnail;
+
 
     public String getLarge() {
         return large;

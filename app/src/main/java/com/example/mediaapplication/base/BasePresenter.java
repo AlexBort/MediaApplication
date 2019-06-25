@@ -18,4 +18,6 @@ public abstract class BasePresenter<V extends IBaseView> implements IBasePresent
     V view() {
         return this.view == null ? null : this.view.get();
     }
+
+
 }

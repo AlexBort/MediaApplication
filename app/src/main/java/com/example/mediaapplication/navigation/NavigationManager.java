@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.mediaapplication.R;
+import com.example.mediaapplication.fragments.FavouritesFragment;
 import com.example.mediaapplication.fragments.GalleryFragment;
 import com.example.mediaapplication.fragments.ListFragment;
 
@@ -34,6 +35,11 @@ public class NavigationManager implements INavigation {
         mFragmentStack.addFragment(GalleryFragment.class, bundle);
     }
 
+    @Override
+    public void openFavouriteFragment() {
+        Bundle bundle = new Bundle();
+        mFragmentStack.addFragment(FavouritesFragment.class, bundle);
+    }
 
     @Override
     public void openListFragment() {

@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.mediaapplication.R;
 import com.example.mediaapplication.adapters.RecyclerAdapter;
@@ -24,10 +26,7 @@ import java.util.List;
 
 public class ListFragment extends BaseFragment<ListPresenter> implements IListView, RecyclerAdapter.FavouriteListener {
 
-    private RecyclerImpl recyclerImpl;
-    //    List<RecyclerItem> recyclerItems = new ArrayList<>();
-    ArrayList<String> urlList = new ArrayList<>();
-
+    private ArrayList<String> urlList = new ArrayList<>();
     private IListView iListView;
 
     @Override
@@ -38,13 +37,15 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        RecyclerView recyclerView = view.findViewById(R.id.recycler);
-        recyclerImpl = new RecyclerImpl(recyclerView);
         recyclerImpl.attachSwipe(new SwipeCallback(recyclerImpl.getRecyclerAdapter()));
         recyclerImpl.getRecyclerAdapter().setFavouriteListener(this);
-        recyclerImpl.getRecyclerAdapter().setContext(getContext());
         iListView = this;
+
+        ImageView iconFavourite = view.findViewById(R.id.image);
+        iconFavourite.setOnClickListener(view12 -> {
+            presenter.onIconFavouritePressed(iListView);
+        });
+
 
         recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (view1, position) -> {
             if (!urlList.isEmpty()) {
@@ -72,12 +73,18 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     }
 
     @Override
-    public void deleteItem(int position) {
-
+    public void deleteItem(Picture picture) {
+        presenter.removeFromFavourites(picture, this);
     }
 
     @Override
-    public void addToFavourites() {
+    public void showToastMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void addToFavourites(Picture picture) {
+        presenter.addToFavouritesList(picture, this);
+//        presenter.addToFavouч ч   ritesList(url);
     }
 }

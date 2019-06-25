@@ -30,7 +30,7 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-
+//if ()
         return super.getSwipeDirs(recyclerView, viewHolder);
     }
 
@@ -38,13 +38,14 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
 
+
         switch (direction) {
             case ItemTouchHelper.RIGHT:
-                adapter.addToFavourites(viewHolder, position);
+                adapter.addToFavourites(position);
 
                 break;
             case ItemTouchHelper.LEFT:
-                adapter.deleteItem(viewHolder, position);
+                adapter.deleteItem(position);
                 break;
         }
     }
