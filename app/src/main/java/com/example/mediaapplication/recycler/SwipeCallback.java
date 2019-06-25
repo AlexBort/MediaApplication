@@ -30,14 +30,19 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
 
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-//if ()
-        return super.getSwipeDirs(recyclerView, viewHolder);
+
+        switch (adapter.getTag()) {
+            case ADD:
+                return ItemTouchHelper.RIGHT;
+            case DELETE:
+                return ItemTouchHelper.LEFT;
+        }
+        return 0;
     }
 
     @Override
     public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
         int position = viewHolder.getAdapterPosition();
-
 
         switch (direction) {
             case ItemTouchHelper.RIGHT:

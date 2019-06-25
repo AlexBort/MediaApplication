@@ -39,6 +39,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
         super.onViewCreated(view, savedInstanceState);
         recyclerImpl.attachSwipe(new SwipeCallback(recyclerImpl.getRecyclerAdapter()));
         recyclerImpl.getRecyclerAdapter().setFavouriteListener(this);
+        recyclerImpl.getRecyclerAdapter().setTag(RecyclerAdapter.Tag.ADD);
         iListView = this;
 
         ImageView iconFavourite = view.findViewById(R.id.image);

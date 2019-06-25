@@ -15,8 +15,25 @@ import com.example.mediaapplication.recycler_items.ImageItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.graphics.PorterDuff.Mode.ADD;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
+    private Tag tag;
+
+
+    public enum Tag {
+        ADD,
+        DELETE
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
+    }
+
+    public Tag getTag() {
+        return tag;
+    }
 
     private Context context;
     private List<RecyclerItem> mItems = new ArrayList<>();
