@@ -42,36 +42,28 @@ public class ListPresenter extends BasePresenter<IListView> {
         apiManager.getResults(new ResponseListener() {
             @Override
             public void successResponse(ServerResponse response) {
-                List<User> users = response.getResults();
-                List<Picture> pictureList = new ArrayList<>();
-                for (int i = 0; i < users.size(); i++) {
-                    Picture picture = users.get(i).getPicture();
-                    pictureList.add(picture);
+                if (response != null) {
+                    List<User> users = response.getResults();
+                    List<Picture> pictureList = new ArrayList<>();
+                    for (int i = 0; i < users.size(); i++) {
+                        Picture picture = users.get(i).getPicture();
+                        pictureList.add(picture);
+                    }
+                    view.showImagesList(pictureList);
                 }
-                view.showImagesList(pictureList);
+
             }
 
             @Override
             public void failureResponse() {
-
+                String s = "BAD REQUEST";
+                view.showToastMessage(s);
             }
         });
     }
 
-    private void saveToDbByList(List<Picture> listPicture) {
-        Realm realm = configRealm();
-        realm.executeTransaction(new Realm.Transaction() {
-            @Override
-            public void execute(Realm realm) {
-                for (int i = 0; i < listPicture.size(); i++) {
-                    realm.copyToRealm(listPicture.get(i));
-                }
 
-            }
-        });
-    }
-
-    private void saveToDbByModel(Picture picture) {
+    private void saveToDb(Picture picture) {
         Realm realm = configRealm();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -97,7 +89,7 @@ public class ListPresenter extends BasePresenter<IListView> {
     }
 
     public void addToFavouritesList(Picture picture, IListView view) {
-        saveToDbByModel(picture);
+        saveToDb(picture);
         String message = "added to the FAVOURITE list";
         view.showToastMessage(message);
     }

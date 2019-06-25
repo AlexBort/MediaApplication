@@ -26,6 +26,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         this.list = list;
     }
 
+
+
     public ArrayList<String> getUrlList() {
         return list;
     }

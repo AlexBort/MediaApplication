@@ -44,6 +44,12 @@ public class GalleryFragment extends BaseFragment<GalleryPresenter> implements I
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        viewPagerAdapter.getUrlList().clear();
+    }
+
+    @Override
     public void showGallery(ArrayList<String> listUrls, int selectedPosition) {
         viewPagerAdapter.initData(listUrls);
         viewPager.setAdapter(viewPagerAdapter);
