@@ -39,7 +39,6 @@ public class ListPresenter extends BasePresenter<IListView> {
     public void onBindView(final IListView view) {
         super.onBindView(view);
 
-//        view.initRecycler();
         apiManager.getResults(new ResponseListener() {
             @Override
             public void successResponse(ServerResponse response) {
@@ -49,9 +48,7 @@ public class ListPresenter extends BasePresenter<IListView> {
                     Picture picture = users.get(i).getPicture();
                     pictureList.add(picture);
                 }
-//                saveToDbByList(pictureList);
                 view.showImagesList(pictureList);
-//                getSavedList();
             }
 
             @Override
@@ -96,23 +93,7 @@ public class ListPresenter extends BasePresenter<IListView> {
     }
 
     public void removeFromFavourites(Picture picture, IListView view) {
-        // TODO: 25.06.2019 to play with the realm
-
-
         findAndDeleteItem(picture.getLarge(), view);
-
-//        RealmResults<Picture> list = getSavedList();
-//        for (int i = 0; i < list.size(); i++) {
-//            if (picture.getLarge().equals(list.get(i).getLarge())) {
-//                list.get(i).deleteFromRealm();
-//                configRealm().commitTransaction();
-//            }
-//        }
-
-
-        //        realm.delete();
-
-
     }
 
     public void addToFavouritesList(Picture picture, IListView view) {

@@ -59,7 +59,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     public interface FavouriteListener {
-        //  void deleteItem(List<RecyclerItem> list);
         void deleteItem(Picture picture);
 
         void addToFavourites(Picture picture);
