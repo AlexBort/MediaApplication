@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.View;
 
 import com.example.mediaapplication.R;
@@ -26,7 +27,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     private RecyclerImpl recyclerImpl;
     //    List<RecyclerItem> recyclerItems = new ArrayList<>();
     ArrayList<String> urlList = new ArrayList<>();
-    ;
+
     private IListView iListView;
 
     @Override
@@ -41,7 +42,8 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
         RecyclerView recyclerView = view.findViewById(R.id.recycler);
         recyclerImpl = new RecyclerImpl(recyclerView);
         recyclerImpl.attachSwipe(new SwipeCallback(recyclerImpl.getRecyclerAdapter()));
-        recyclerImpl.getRecyclerAdapter().setDeleteListener(this);
+        recyclerImpl.getRecyclerAdapter().setFavouriteListener(this);
+        recyclerImpl.getRecyclerAdapter().setContext(getContext());
         iListView = this;
 
         recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (view1, position) -> {

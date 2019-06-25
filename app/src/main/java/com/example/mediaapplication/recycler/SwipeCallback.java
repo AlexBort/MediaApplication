@@ -14,12 +14,11 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
 
 
     private RecyclerAdapter adapter;
-    private final ColorDrawable background;
+    private ColorDrawable background;
 
     public SwipeCallback(RecyclerAdapter adapter) {
         super(0, ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT);
         this.adapter = adapter;
-        background = new ColorDrawable(Color.GREEN);
     }
 
     @Override
@@ -29,17 +28,10 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
         return false;
     }
 
-    /**
-     * make only link item swipeable
-     */
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
 
-//        if (viewHolder.itemView.getTag() != null && viewHolder.itemView.getTag().equals(RecyclerItemType.EDIT_LINK_ITEM)) {
         return super.getSwipeDirs(recyclerView, viewHolder);
-//        } else {
-//            return 0;
-//        }
     }
 
     @Override
@@ -48,10 +40,11 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
 
         switch (direction) {
             case ItemTouchHelper.RIGHT:
-                adapter.addToFavourites(position);
+                adapter.addToFavourites(viewHolder, position);
+
                 break;
             case ItemTouchHelper.LEFT:
-                adapter.deleteItem(position);
+                adapter.deleteItem(viewHolder, position);
                 break;
         }
     }
@@ -73,18 +66,25 @@ public class SwipeCallback extends ItemTouchHelper.SimpleCallback {
                             float dY, int actionState, boolean isCurrentlyActive) {
 
         super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+
         View itemView = viewHolder.itemView;
         int backgroundCornerOffset = 20;
 
         if (dX > 0) { // Swiping to the right
+
+            background = new ColorDrawable(Color.GREEN);
+
             background.setBounds(itemView.getLeft(), itemView.getTop(),
                     itemView.getLeft() + ((int) dX) + backgroundCornerOffset,
                     itemView.getBottom());
 
         } else if (dX < 0) { // Swiping to the left
+            background = new ColorDrawable(Color.RED);
             background.setBounds(itemView.getRight() + ((int) dX) - backgroundCornerOffset,
                     itemView.getTop(), itemView.getRight(), itemView.getBottom());
-        } else { // view is unSwiped
+        } else {
+            background = new ColorDrawable(Color.GREEN);
+            // view is unSwiped
             background.setBounds(0, 0, 0, 0);
         }
         background.draw(c);
