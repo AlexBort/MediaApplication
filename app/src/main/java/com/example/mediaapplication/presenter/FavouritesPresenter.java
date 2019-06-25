@@ -20,37 +20,26 @@ public class FavouritesPresenter extends BasePresenter<IFavouritesView> {
     }
 
     public void removeFromFavourites(Picture picture, IFavouritesView view) {
-        // TODO: 25.06.2019 to play with the realm
-
-
         findAndDeleteItem(picture.getLarge(), view);
-
-//        RealmResults<Picture> list = getSavedList();
-//        for (int i = 0; i < list.size(); i++) {
-//            if (picture.getLarge().equals(list.get(i).getLarge())) {
-//                list.get(i).deleteFromRealm();
-//                configRealm().commitTransaction();
-//            }
-//        }
-
-
-        //        realm.delete();
-
-
     }
 
     private void findAndDeleteItem(String largeUrl, IFavouritesView view) {
         Realm realm = Realm.getDefaultInstance();
         RealmResults<Picture> pictures = realm.where(Picture.class).equalTo("large", largeUrl).findAll();
-        realm.beginTransaction();
+
         if (!pictures.isEmpty()) {
+            realm.beginTransaction();
             for (int i = 0; i < pictures.size(); i++) {
                 pictures.get(i).deleteFromRealm();
             }
             String message = "remove from the FAVOURITE list";
             view.showToastMessage(message);
+            realm.commitTransaction();
+            realm.close();
+            view.showFavouritesList(getSavedList());
         }
-        realm.commitTransaction();
+
+
     }
 
     @Override

@@ -22,8 +22,10 @@ public class RecyclerImpl {
         this.layoutManager = new LinearLayoutManager(recyclerView.getContext());
 
         recyclerView.setLayoutManager(layoutManager);
+        setDividerDecoration();
         recyclerView.setAdapter(recyclerAdapter);
     }
+
 
     // after set to Adapter
     public void attachSwipe(SwipeCallback swipeCallback) {
@@ -53,7 +55,7 @@ public class RecyclerImpl {
         return layoutManager;
     }
 
-    public void setDividerDecoration() {
+    private void setDividerDecoration() {
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation()));
     }
 

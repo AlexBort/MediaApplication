@@ -72,6 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     public void addToFavourites(int position) {
+        notifyDataSetChanged();
         ImageItem item = (ImageItem) mItems.get(position);
         listener.addToFavourites(item.getPicture());
     }
