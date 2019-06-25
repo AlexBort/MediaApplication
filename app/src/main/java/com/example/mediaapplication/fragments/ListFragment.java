@@ -78,6 +78,5 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     @Override
     public void addToFavourites(Picture picture) {
         presenter.addToFavouritesList(picture, this);
-//        presenter.addToFavouч ч   ritesList(url);
     }
 }

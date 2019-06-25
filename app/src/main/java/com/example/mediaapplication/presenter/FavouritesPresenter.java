@@ -4,6 +4,7 @@ import com.example.mediaapplication.base.BasePresenter;
 import com.example.mediaapplication.model.Picture;
 import com.example.mediaapplication.view.IFavouritesView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
@@ -49,4 +50,7 @@ public class FavouritesPresenter extends BasePresenter<IFavouritesView> {
     }
 
 
+    public void onListItemPressed(IFavouritesView iFavouritesView, int position, ArrayList<String> urlList) {
+        iFavouritesView.getNavigation().openGalleryFragment(position, urlList);
+    }
 }

@@ -14,6 +14,7 @@ import com.example.mediaapplication.base.BaseFragment;
 import com.example.mediaapplication.model.Picture;
 import com.example.mediaapplication.presenter.FavouritesPresenter;
 import com.example.mediaapplication.recycler.RecyclerItem;
+import com.example.mediaapplication.recycler.RecyclerItemClickListener;
 import com.example.mediaapplication.recycler.SwipeCallback;
 import com.example.mediaapplication.recycler_items.ImageItem;
 import com.example.mediaapplication.view.IFavouritesView;
@@ -23,6 +24,8 @@ import java.util.List;
 
 public class FavouritesFragment extends BaseFragment<FavouritesPresenter> implements IFavouritesView, RecyclerAdapter.FavouriteListener {
 
+    private ArrayList<String> urlList = new ArrayList<>();
+    private IFavouritesView iFavouritesView;
 
     @Override
     protected FavouritesPresenter createPresenter() {
@@ -36,8 +39,17 @@ public class FavouritesFragment extends BaseFragment<FavouritesPresenter> implem
         recyclerImpl.attachSwipe(new SwipeCallback(recyclerImpl.getRecyclerAdapter()));
         recyclerImpl.getRecyclerAdapter().setFavouriteListener(this);
         recyclerImpl.getRecyclerAdapter().setTag(RecyclerAdapter.Tag.DELETE);
+        iFavouritesView = this;
         ImageView imageView = view.findViewById(R.id.image);
         imageView.setVisibility(View.GONE);
+
+
+        recyclerImpl.getRecyclerView().addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), (view1, position) -> {
+            if (!urlList.isEmpty()) {
+                presenter.onListItemPressed(iFavouritesView, position, urlList);
+            }
+        }));
+
 
         return view;
     }
@@ -52,6 +64,7 @@ public class FavouritesFragment extends BaseFragment<FavouritesPresenter> implem
         List<RecyclerItem> list = new ArrayList<>();
         for (int i = 0; i < pictures.size(); i++) {
             list.add(new ImageItem(pictures.get(i)));
+            urlList.add(pictures.get(i).getLarge());
         }
         recyclerImpl.updateItems(list);
     }
