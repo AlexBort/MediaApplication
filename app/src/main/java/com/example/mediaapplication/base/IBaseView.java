@@ -6,6 +6,8 @@ public interface IBaseView {
 
     INavigation getNavigation();
 
+    void showToastMessage(String message);
+
 //    void initRecycler();
 
 }

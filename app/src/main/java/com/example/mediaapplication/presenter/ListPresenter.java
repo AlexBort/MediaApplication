@@ -1,7 +1,5 @@
 package com.example.mediaapplication.presenter;
 
-import android.util.Log;
-
 import com.example.mediaapplication.api.ApiManager;
 import com.example.mediaapplication.api.ResponseListener;
 import com.example.mediaapplication.base.BasePresenter;
@@ -14,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import io.realm.Realm;
-import io.realm.RealmChangeListener;
 import io.realm.RealmConfiguration;
 import io.realm.RealmResults;
 
@@ -53,7 +50,7 @@ public class ListPresenter extends BasePresenter<IListView> {
                     pictureList.add(picture);
                 }
 //                saveToDbByList(pictureList);
-                view.showContentList(pictureList);
+                view.showImagesList(pictureList);
 //                getSavedList();
             }
 

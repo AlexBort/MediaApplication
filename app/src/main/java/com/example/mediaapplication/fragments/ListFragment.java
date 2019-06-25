@@ -63,7 +63,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
     }
 
     @Override
-    public void showContentList(List<Picture> dataList) {
+    public void showImagesList(List<Picture> dataList) {
         List<RecyclerItem> list = new ArrayList<>();
         for (int i = 0; i < dataList.size(); i++) {
             list.add(new ImageItem(dataList.get(i)));
@@ -78,10 +78,6 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IListVi
         presenter.removeFromFavourites(picture, this);
     }
 
-    @Override
-    public void showToastMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void addToFavourites(Picture picture) {

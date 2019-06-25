@@ -58,11 +58,13 @@ public class FavouritesFragment extends BaseFragment<FavouritesPresenter> implem
 
     @Override
     public void deleteItem(Picture picture) {
-// TODO: 25.06.2019 ----- presenter.removeFromFavourites(picture, this);
+        presenter.removeFromFavourites(picture, this);
     }
 
     @Override
     public void addToFavourites(Picture picture) {
 
     }
+
+
 }
